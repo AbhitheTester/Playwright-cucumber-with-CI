@@ -1,0 +1,33 @@
+{
+  "name": "playwright-cucu-one",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "npx ts-node src/helper/intit.ts ",
+    "test": "set ENV=prod&& cucumber-js --config cucumber.json && ts-node src/helper/report.ts",
+    "test:staging": "set ENV=staging&& cucumber-js --config cucumber.json && ts-node src/helper/report.ts",
+    "test:prod": "set ENV=prod&& cucumber-js --config cucumber.json && ts-node src/helper/report.ts",
+    "pretest:ci": "npx ts-node src/helper/intit.ts",
+    "test:ci": "cucumber-js --config cucumber.json",
+    "test:feature": "cucumber-js --config cucumber.json",
+    "test:failed": "cucumber-js -p rerun @rerun.txt && ts-node src/helper/report.ts",
+    "report": "ts-node src/helper/report.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.0.0",
+    "@playwright/test": "^1.60.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^25.9.3",
+    "fs-extra": "^11.3.5",
+    "multiple-cucumber-html-reporter": "^3.10.0",
+    "ts-node": "^10.9.2",
+    "winston": "^3.19.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}
