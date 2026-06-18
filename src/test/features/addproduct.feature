@@ -1,5 +1,6 @@
 Feature: Able to add product to cart and place order successfully
 
+  @regression @cart
   Scenario Outline: Add product to cart and place order successfully
     Given User is on Login Page
     When User enters username from environment

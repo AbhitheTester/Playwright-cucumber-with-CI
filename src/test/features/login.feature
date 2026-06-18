@@ -1,5 +1,6 @@
 Feature: Login
 
+@smoke @login
 Scenario: Successful Login
 
 Given User is on Login Page

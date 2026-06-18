@@ -5,6 +5,7 @@ pipeline {
         choice(name: 'ENV', choices: ['prod', 'staging'], description: 'Target environment config file')
         choice(name: 'BROWSER', choices: ['chromium', 'firefox', 'webkit'], description: 'Browser used by Playwright')
         booleanParam(name: 'HEADLESS', defaultValue: true, description: 'Run browser in headless mode')
+        string(name: 'TAGS', defaultValue: '@smoke', description: 'Cucumber tag expression. Example: @smoke, @cart, @smoke or @regression. Leave blank to run all scenarios.')
     }
 
     environment {
@@ -38,7 +39,11 @@ pipeline {
                     set ENV=%ENV%
                     set BROWSER=%BROWSER%
                     set HEADLESS=%HEADLESS%
-                    npm run test:ci
+                    if "%TAGS%"=="" (
+                        npm run test:ci
+                    ) else (
+                        npm run test:ci -- --tags "%TAGS%"
+                    )
                     '''
                 }
             }
