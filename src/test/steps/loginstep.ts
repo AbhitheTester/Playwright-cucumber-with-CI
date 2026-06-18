@@ -63,6 +63,14 @@ When('User enters password from environment', async function () {
   await enterPassword(getRequiredEnv("APP_PASSWORD"));
 });
 
+When('User logs in with selected role', async function () {
+  const userRole = process.env.USER_ROLE || "default";
+
+  await enterUsername(getRequiredEnv("APP_USERNAME"));
+  await enterPassword(getRequiredEnv("APP_PASSWORD"));
+  PageFixture.logger.info(`Entered credentials for role: ${userRole}`);
+});
+
 
 When('User clicks on login button', async function () {
   await PageFixture.page.locator("[type='submit']").click();
